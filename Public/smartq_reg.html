@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Form - Nigeria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f8fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(to right, #1a5f7a, #159895);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .form-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-card h2 {
+            color: #159895;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-card h2 i {
+            color: #1a5f7a;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #159895;
+            box-shadow: 0 0 0 2px rgba(21, 152, 149, 0.2);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .niche-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .niche-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .niche-option:hover {
+            border-color: #159895;
+            background-color: #f9f9f9;
+        }
+        
+        .niche-option.selected {
+            border-color: #159895;
+            background-color: #e8f7f7;
+        }
+        
+        .niche-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .bank-icon {
+            background-color: #3498db;
+        }
+        
+        .hospital-icon {
+            background-color: #e74c3c;
+        }
+        
+        .government-icon {
+            background-color: #2ecc71;
+        }
+        
+        .niche-info h3 {
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .niche-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .sub-niche-container {
+            display: none;
+        }
+        
+        .sub-niche-container.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #1a5f7a, #159895);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            margin: 30px auto 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(21, 152, 149, 0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .form-notice {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ffc107;
+            font-size: 14px;
+        }
+        
+        .form-notice i {
+            color: #ff9800;
+            margin-right: 8px;
+        }
+        
+        .time-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .time-input-group select {
+            flex: 1;
+        }
+        
+        /* Styling for required fields */
+        input:required, select:required, textarea:required {
+            border-left: 3px solid #e74c3c;
+        }
+        
+        input:valid, select:valid, textarea:valid {
+            border-left: 3px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-comment-dots"></i> Complaint Form</h1>
+            <p>Report issues to registered institutions in Nigeria</p>
+        </header>
+        
+        <form id="complaintForm" action="/regproccess" method="POST">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2><i class="fas fa-user-circle"></i> Personal Information</h2>
+                    
+                    <div class="form-notice">
+                        <i class="fas fa-info-circle"></i>
+                        All fields marked with an asterisk (*) are required.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullname" class="required">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name" class="required">Preferred Name</label>
+                        <input type="text" id="name" name="name" placeholder="How should we address you?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phonenumber" class="required">Phone Number</label>
+                        <input type="tel" id="phonenumber" name="phonenumber" placeholder="+234 800 000 0000" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date" class="required">Date of Incident</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="time" class="required">Time of Incident</label>
+                            <div class="time-input-group">
+                                <select id="time" name="time" required>
+                                    <option value="">-- Select Time --</option>
+                                    <option value="00:00">12:00 AM</option>
+                                    <option value="01:00">1:00 AM</option>
+                                    <option value="02:00">2:00 AM</option>
+                                    <option value="03:00">3:00 AM</option>
+                                    <option value="04:00">4:00 AM</option>
+                                    <option value="05:00">5:00 AM</option>
+                                    <option value="06:00">6:00 AM</option>
+                                    <option value="07:00">7:00 AM</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                    <option value="22:00">10:00 PM</option>
+                                    <option value="23:00">11:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address" class="required">Address</label>
+                        <input type="text" id="address" name="address" placeholder="Your complete address" required>
+                    </div>
+                </div>
+                
+                <div class="form-card">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Complaint Details</h2>
+                    
+                    <div class="form-group">
+                        <label class="required">Select Niche</label>
+                        <div class="niche-container">
+                            <div class="niche-option" data-niche="bank">
+                                <div class="niche-icon bank-icon">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="niche-info">
+                                    <h3>Bank</h3>
+                                    <p>Financial institutions and banking services</p>
+                                </div>
+                            </div>
+                            
+                            <div class="niche-option" data-niche="hospital">
+                                <div class="niche-icon hospital-icon">
+                                    <i class="fas fa-hospital"></i>
+                                </div>
+                                <div class="niche-info">
+                                    <h3>Hospital</h3>
+                                    <p>Medical facilities and healthcare providers</p>
+                                </div>
+                            </div>
+                            
+                            <div class="niche-option" data-niche="government">
+                                <div class="niche-icon government-icon">
+                                    <i class="fas fa-landmark"></i>
+                                </div>
+                                <div class="niche-info">
+                                    <h3>Government Agencies</h3>
+                                    <p>Public sector organizations and agencies</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Hidden field to store selected niche -->
+                        <input type="hidden" id="niche" name="niche" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sub-niche" class="required">Select Sub-Niche</label>
+                        
+                        <!-- Bank sub-niche options (hidden by default) -->
+                        <div id="sub-niche-bank" class="sub-niche-container">
+                            <select id="sub-niche-bank-select" name="sub_niche" required disabled>
+                                <option value="">-- Select a Registered Bank --</option>
+                                <option value="access">Access Bank Plc</option>
+                                <option value="first">First Bank of Nigeria</option>
+                                <option value="gtb">Guaranty Trust Bank</option>
+                                <option value="uba">United Bank for Africa</option>
+                                <option value="zenith">Zenith Bank Plc</option>
+                                <option value="fidelity">Fidelity Bank Plc</option>
+                                <option value="union">Union Bank of Nigeria</option>
+                                <option value="stanbic">Stanbic IBTC Bank</option>
+                                <option value="ecobank">Ecobank Nigeria</option>
+                                <option value="polaris">Polaris Bank</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Hospital sub-niche options (hidden by default) -->
+                        <div id="sub-niche-hospital" class="sub-niche-container">
+                            <select id="sub-niche-hospital-select" name="sub_niche" required disabled>
+                                <option value="">-- Select a Registered Hospital --</option>
+                                <option value="lagos-university">Lagos University Teaching Hospital (LUTH)</option>
+                                <option value="national-hospital">National Hospital, Abuja</option>
+                                <option value="uba">University College Hospital (UCH), Ibadan</option>
+                                <option value="aminu-kano">Aminu Kano Teaching Hospital</option>
+                                <option value="nigerian-navy">Nigerian Navy Reference Hospital</option>
+                                <option value="reddington">Reddington Hospital, Lagos</option>
+                                <option value="evercare">Evercare Hospital, Lekki</option>
+                                <option value="st-nicholas">St. Nicholas Hospital, Lagos</option>
+                                <option value="lagoon">Lagoon Hospitals, Lagos</option>
+                                <option value="nizamiye">Nizamiye Hospital, Abuja</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Government sub-niche options (hidden by default) -->
+                        <div id="sub-niche-government" class="sub-niche-container">
+                            <select id="sub-niche-government-select" name="sub_niche" required disabled>
+                                <option value="">-- Select a Government Agency --</option>
+                                <option value="efcc">Economic and Financial Crimes Commission (EFCC)</option>
+                                <option value="icpc">Independent Corrupt Practices Commission (ICPC)</option>
+                                <option value="firs">Federal Inland Revenue Service (FIRS)</option>
+                                <option value="nnpc">Nigerian National Petroleum Corporation (NNPC)</option>
+                                <option value="ncc">Nigerian Communications Commission (NCC)</option>
+                                <option value="nema">National Emergency Management Agency (NEMA)</option>
+                                <option value="nipa">National Identity Management Commission (NIMC)</option>
+                                <option value="nca">National Commission for Refugees (NCFR)</option>
+                                <option value="ncdc">Nigeria Centre for Disease Control (NCDC)</option>
+                                <option value="pencom">National Pension Commission (PenCom)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="complaint" class="required">Complaint Details</label>
+                        <textarea id="complaint" name="complaint" placeholder="Please provide detailed information about your complaint..." required></textarea>
+                    </div>
+
+                    <div>
+                        <input type="hidden" name="status" value="on">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Complaint
+                    </button>
+                </div>
+            </div>
+        </form>
+        
+        <footer>
+            <p>© 2025 Smart Queue - Nigeria. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date as default for the date field
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+            
+            // Set default time to current hour
+            const now = new Date();
+            const currentHour = now.getHours().toString().padStart(2, '0');
+            const timeSelect = document.getElementById('time');
+            timeSelect.value = `${currentHour}:00`;
+            
+            // Get all niche options
+            const nicheOptions = document.querySelectorAll('.niche-option');
+            
+            // Get the hidden input for niche
+            const nicheHiddenInput = document.getElementById('niche');
+            
+            // Get all sub-niche containers
+            const subNicheContainers = document.querySelectorAll('.sub-niche-container');
+            
+            // Function to show the appropriate sub-niche based on selected niche
+            function showSubNiche(niche) {
+                // First, hide all sub-niche containers
+                subNicheContainers.forEach(container => {
+                    container.classList.remove('active');
+                    
+                    // Also disable the select elements
+                    const selectElement = container.querySelector('select');
+                    if (selectElement) {
+                        selectElement.disabled = true;
+                        selectElement.required = false;
+                    }
+                });
+                
+                // Then, show the selected niche's sub-niche container
+                const selectedSubNiche = document.getElementById(`sub-niche-${niche}`);
+                if (selectedSubNiche) {
+                    selectedSubNiche.classList.add('active');
+                    
+                    // Enable the select element for the active container
+                    const selectElement = selectedSubNiche.querySelector('select');
+                    if (selectElement) {
+                        selectElement.disabled = false;
+                        selectElement.required = true;
+                    }
+                }
+                
+                // Update the hidden input value
+                nicheHiddenInput.value = niche;
+            }
+            
+            // Add click event listeners to each niche option
+            nicheOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove 'selected' class from all niche options
+                    nicheOptions.forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add 'selected' class to the clicked option
+                    this.classList.add('selected');
+                    
+                    // Get the niche value from the data attribute
+                    const selectedNiche = this.getAttribute('data-niche');
+                    
+                    // Show the corresponding sub-niche
+                    showSubNiche(selectedNiche);
+                });
+            });
+            
+            // Pre-select the "Bank" niche by default
+            const defaultNiche = document.querySelector('.niche-option[data-niche="bank"]');
+            if (defaultNiche) {
+                defaultNiche.click();
+            }
+            
+            // Form submission - let HTML5 validation handle it
+            document.getElementById('complaintForm').addEventListener('submit', function(e) {
+                // HTML5 validation will handle required fields
+                // If form is valid, it will submit normally
+                // If not valid, browser will show validation messages
+                
+                // We're not preventing default or doing custom validation
+                // Just letting the form submit normally
+                console.log('Form submitted - letting browser handle validation');
+            });
+        });
+    </script>
+</body>
+</html>

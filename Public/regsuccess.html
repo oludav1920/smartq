@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        You have successfully book queue for yourself
+    </div>
+    <div>You will be redirected to dashboard after 3 seconds</div>
+
+    <script>
+        localStorage.setItem('data', "");
+
+        setTimeout(()=>{
+            window.location = "/dashboard";
+        }, 3000);
+    </script>
+</body>
+</html>
