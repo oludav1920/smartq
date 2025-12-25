@@ -608,10 +608,10 @@
                         <span class="notification-badge">3</span>
                     </button>
                     
-                    <button class="quick-book-btn">
+                    <button class="quick-book-btn"><a href="./smartq_reg.html">
                         <i class="fas fa-plus"></i>
                         Quick Book
-                    </button>
+                    </a></button>
                 </div>
             </div>
         </div>
@@ -883,8 +883,8 @@
             // Quick book button
             const quickBookBtn = document.querySelector('.quick-book-btn');
             quickBookBtn.addEventListener('click', function() {
-                alert('Redirecting to booking page...');
-                // In a real app: window.location.href = '/book';
+                
+                 window.location.href = './smartq_reg.html';
             });
             
             // Action buttons
@@ -894,8 +894,8 @@
                     const text = this.textContent.trim();
                     
                     if (text.includes('Book Queue')) {
-                        alert('Opening booking form...');
-                        // In a real app: window.location.href = '/book';
+                        
+                         window.location.href = './smartq_reg.html';
                     } else if (text.includes('Find Services')) {
                         alert('Opening services directory...');
                         // In a real app: window.location.href = '/services';
