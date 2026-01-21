@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div>
+        <input type="text" id="fullname"><br>
+        <input type="text" id="email" > <br>
+        <button type="submit" onclick="submit()">Login</button>
+   </div>
+</body>
+<script>
+
+    async function submit(){
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+        const name = document.getElementById("fullname").value;
+        const e ={email:email, name:name};
+        console.log(e);
+       try {
+          const api = await fetch('/loginproc', {
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify(e)
+        });
+        if(!api.ok){
+            console.log(api.status);
+        }
+        else{
+            const response = await api.json();
+            const convert = JSON.parse(response);
+            alert(`welcome back ${convert.name}`);
+        }
+       } catch (error) {
+        console.log(error.message)
+       }
+    }
+</script>
+</html>
